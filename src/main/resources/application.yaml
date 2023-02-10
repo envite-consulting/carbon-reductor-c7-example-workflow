@@ -1,0 +1,15 @@
+spring.datasource.url: jdbc:h2:file:./camunda-h2-database
+
+server.port: 7777
+
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: pw
+    filter:
+      create: All tasks
+    generic-properties:
+      properties:
+        initialize-telemetry: false
+        telemetry-reporter-activate: false
