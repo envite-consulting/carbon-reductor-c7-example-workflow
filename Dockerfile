@@ -6,6 +6,8 @@ FROM openjdk:17.0.1-jdk-slim as RUN
 
 COPY --from=BUILD target/carbon-reductor-example-workflow-*.jar carbon-reductor-example-workflow.jar
 
+RUN apt-get update && apt-get install -y curl
+
 EXPOSE 7777
 
 ENTRYPOINT ["java", "-jar", "carbon-reductor-example-workflow.jar"]
