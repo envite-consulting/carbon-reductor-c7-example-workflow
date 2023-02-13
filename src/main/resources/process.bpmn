@@ -21,7 +21,7 @@
           <camunda:connectorId>de.envite.greenbpm.carbonreductorconnector.CarbonReductor</camunda:connectorId>
         </camunda:connector>
         <camunda:inputOutput>
-          <camunda:inputParameter name="RemainingProcessDuration">PT6H</camunda:inputParameter>
+          <camunda:inputParameter name="remainingProcessDuration">PT6H</camunda:inputParameter>
           <camunda:inputParameter name="maximumProcessDuration">PT12H</camunda:inputParameter>
           <camunda:inputParameter name="location">westus</camunda:inputParameter>
           <camunda:inputParameter name="carbonReductorMode">slaBasedConfiguration</camunda:inputParameter>
