@@ -23,5 +23,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         run: |
-          docker build -t "enviteconsulting/carbon-reductor-c7-example-workflow:$tag" .
-          docker push "enviteconsulting/carbon-reductor-c7-example-workflow:$tag"
+          docker build -t "enviteconsulting/carbon-reductor-c7-example-workflow:$TAG" .
+          docker push "enviteconsulting/carbon-reductor-c7-example-workflow:$TAG"
+        env:
+          TAG: ${{ inputs.tag }}
