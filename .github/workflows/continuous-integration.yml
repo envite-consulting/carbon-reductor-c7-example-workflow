@@ -1,0 +1,27 @@
+# This workflow will build a Java project with Maven
+
+name: Continuous Integration
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag of the image'
+        required: true
+        type: string
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        run: |
+          docker build -t "enviteconsulting/carbon-reductor-c7-example-workflow:$tag" .
+          docker push "enviteconsulting/carbon-reductor-c7-example-workflow:$tag"
