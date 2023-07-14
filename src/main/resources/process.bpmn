@@ -12,7 +12,6 @@
     <bpmn:sequenceFlow id="Flow_1ulqdi1" sourceRef="Activity_0y4ndy2" targetRef="Event_0yvwd6a" />
     <bpmn:userTask id="Activity_0y4ndy2" name="Check result">
       <bpmn:incoming>Flow_1lml8kc</bpmn:incoming>
-      <bpmn:incoming>Flow_0tx6e3y</bpmn:incoming>
       <bpmn:outgoing>Flow_1ulqdi1</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1lml8kc" sourceRef="C7_Carbon_Reductor" targetRef="Activity_0y4ndy2" />
@@ -23,27 +22,22 @@
         </camunda:connector>
         <camunda:inputOutput>
           <camunda:inputParameter name="milestone">${dateTime()}</camunda:inputParameter>
-          <camunda:inputParameter name="location">germanywestcentral</camunda:inputParameter>
           <camunda:inputParameter name="remainingProcessDuration">PT1H</camunda:inputParameter>
           <camunda:inputParameter name="maximumProcessDuration">PT23H</camunda:inputParameter>
-          <camunda:inputParameter name="errorHandling">THROW_BPMN_ERROR</camunda:inputParameter>
+          <camunda:inputParameter name="errorHandling">CONTINUE_ON_EXCEPTION</camunda:inputParameter>
+          <camunda:inputParameter name="location">westus</camunda:inputParameter>
           <camunda:inputParameter name="measurementOnly">false</camunda:inputParameter>
           <camunda:outputParameter name="executionDelayed">${executionDelayed}</camunda:outputParameter>
           <camunda:outputParameter name="delayedBy">${delayedBy}</camunda:outputParameter>
-          <camunda:outputParameter name="originalCarbon">${originalCarbon}</camunda:outputParameter>
-          <camunda:outputParameter name="actualCarbon">${actualCarbon}</camunda:outputParameter>
-          <camunda:outputParameter name="savedCarbon">${savedCarbon}</camunda:outputParameter>
+          <camunda:outputParameter name="carbonWithoutOptimization">${carbonWithoutOptimization}</camunda:outputParameter>
+          <camunda:outputParameter name="optimalForecastedCarbon">${optimalForecastedCarbon}</camunda:outputParameter>
+          <camunda:outputParameter name="savedCarbonPercentage">${savedCarbonPercentage}</camunda:outputParameter>
           <camunda:outputParameter name="reducedCarbon">${reducedCarbon}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1qbpniq</bpmn:incoming>
       <bpmn:outgoing>Flow_1lml8kc</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:boundaryEvent id="Event_00a9yl5" attachedToRef="C7_Carbon_Reductor">
-      <bpmn:outgoing>Flow_0tx6e3y</bpmn:outgoing>
-      <bpmn:errorEventDefinition id="ErrorEventDefinition_174gmcs" errorRef="Error_1nzem9a" camunda:errorMessageVariable="${errorMessage}" />
-    </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_0tx6e3y" sourceRef="Event_00a9yl5" targetRef="Activity_0y4ndy2" />
   </bpmn:process>
   <bpmn:error id="Error_Error_1_2bs56tq" name="error-name" errorCode="error-code" camunda:errorMessage="error-message" />
   <bpmn:error id="Error_1nzem9a" name="carbon-reductor-error" errorCode="carbon-reductor-error" />
@@ -62,9 +56,6 @@
         <dc:Bounds x="270" y="77" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0tzicu3_di" bpmnElement="Event_00a9yl5">
-        <dc:Bounds x="322" y="139" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1qbpniq_di" bpmnElement="Flow_1qbpniq">
         <di:waypoint x="215" y="117" />
         <di:waypoint x="270" y="117" />
@@ -76,13 +67,6 @@
       <bpmndi:BPMNEdge id="Flow_1lml8kc_di" bpmnElement="Flow_1lml8kc">
         <di:waypoint x="370" y="117" />
         <di:waypoint x="430" y="117" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0tx6e3y_di" bpmnElement="Flow_0tx6e3y">
-        <di:waypoint x="340" y="175" />
-        <di:waypoint x="340" y="195" />
-        <di:waypoint x="385" y="195" />
-        <di:waypoint x="385" y="147" />
-        <di:waypoint x="430" y="147" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
