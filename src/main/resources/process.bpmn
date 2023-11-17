@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0yq0rie" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.14.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
-  <bpmn:process id="ExternalTaskCarbonReductorProcess" name="ExternalTaskCarbonReductorProcess" isExecutable="true">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0yq0rie" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.17.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="ExternalTaskCarbonReductorProcess" name="ExternalTaskCarbonReductorProcess" isExecutable="true" camunda:historyTimeToLive="P10D">
     <bpmn:extensionElements />
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_1qbpniq</bpmn:outgoing>
@@ -21,12 +21,14 @@
           <camunda:connectorId>de.envite.greenbpm.carbonreductorconnector.CarbonReductor</camunda:connectorId>
         </camunda:connector>
         <camunda:inputOutput>
+          <camunda:inputParameter name="milestone">${dateTime()}</camunda:inputParameter>
           <camunda:inputParameter name="remainingProcessDuration">PT1H</camunda:inputParameter>
           <camunda:inputParameter name="maximumProcessDuration">PT23H</camunda:inputParameter>
           <camunda:inputParameter name="errorHandling">CONTINUE_ON_EXCEPTION</camunda:inputParameter>
           <camunda:inputParameter name="location">westus</camunda:inputParameter>
           <camunda:inputParameter name="measurementOnly">false</camunda:inputParameter>
-          <camunda:inputParameter name="milestone">${dateTime().toDateTimeISO().toString()}</camunda:inputParameter>
+          <camunda:inputParameter name="thresholdEnabled">true</camunda:inputParameter>
+          <camunda:inputParameter name="thresholdValue">4.5</camunda:inputParameter>
           <camunda:outputParameter name="executionDelayed">${executionDelayed}</camunda:outputParameter>
           <camunda:outputParameter name="delayedBy">${delayedBy}</camunda:outputParameter>
           <camunda:outputParameter name="carbonWithoutOptimization">${carbonWithoutOptimization}</camunda:outputParameter>
