@@ -15,5 +15,5 @@ docker build -t enviteconsulting/carbon-reductor-c7-example-workflow:0.0.1 .
 docker run --name carbon-reductor-c7-example -p 7777:7777 enviteconsulting/carbon-reductor-c7-example-workflow:0.0.1
 
 # Build and publish multi-arch
-docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t enviteconsulting/carbon-reductor-c7-example-workflow:<version> t enviteconsulting/carbon-reductor-c7-example-workflow:latest .
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t enviteconsulting/carbon-reductor-c7-example-workflow:<version> -t enviteconsulting/carbon-reductor-c7-example-workflow:latest .
 ```
