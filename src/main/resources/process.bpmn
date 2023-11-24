@@ -21,7 +21,7 @@
           <camunda:connectorId>de.envite.greenbpm.carbonreductorconnector.CarbonReductor</camunda:connectorId>
         </camunda:connector>
         <camunda:inputOutput>
-          <camunda:inputParameter name="milestone">${dateTime()}</camunda:inputParameter>
+          <camunda:inputParameter name="milestone">${dateTime().toDateTimeISO().toString()}</camunda:inputParameter>
           <camunda:inputParameter name="remainingProcessDuration">PT1H</camunda:inputParameter>
           <camunda:inputParameter name="maximumProcessDuration">PT23H</camunda:inputParameter>
           <camunda:inputParameter name="errorHandling">CONTINUE_ON_EXCEPTION</camunda:inputParameter>
