@@ -9,7 +9,3 @@ camunda:
       password: pw
     filter:
       create: All tasks
-    generic-properties:
-      properties:
-        initialize-telemetry: false
-        telemetry-reporter-activate: false
